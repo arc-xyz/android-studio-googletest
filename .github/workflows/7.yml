@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/wrapper
+          key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Run Unit tests
+        run: ./gradlew jacocoTestReport
+
+      - name: Run Instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 27
+          profile: Nexus 6
+          #script: ./gradlew -Pandroid.testInstrumentationRunnerArguments.class=com.smlnskgmail.jaman.hashchecker.AndroidTestSuite connectedCheck --stacktrace
+          script: ./gradlew app:externalNativeBuildDebug --stacktrace
