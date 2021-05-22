@@ -28,9 +28,14 @@ jobs:
 
       - uses: actions/cache@v1
         with:
+          path: ~/.gradle/caches
+          key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+
+      - uses: actions/cache@v1
+        with:
           path: ~/.gradle/wrapper
           key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-      
+
       - name: Set up local properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > /home/runner/work/android-studio-googletest/android-studio-googletest/local.properties
      
