@@ -39,6 +39,9 @@ jobs:
       # Set up platform tools like adb.
       - run: sdkmanager platform-tools
 
+      - name: "Run UI Tests"
+        uses: vgaidarji/android-github-actions-emulator@v1.0.1
+      
       # Start ADB (and verify that pathing is working correctly).
       - run: adb devices
 
