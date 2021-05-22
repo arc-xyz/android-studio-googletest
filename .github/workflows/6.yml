@@ -35,6 +35,15 @@ jobs:
     
       - name: Set up local properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > /home/runner/work/android-studio-googletest/android-studio-googletest/local.properties
-        
+      
+      # Set up platform tools like adb.
+      - run: sdkmanager platform-tools
+
+      # Start ADB (and verify that pathing is working correctly).
+      - run: adb devices
+
+      # Verify $ANDROID_HOME is properly set for later Gradle commands.
+      - run: echo $ANDROID_HOME
+  
       - name: Build SampleApplication
         run: ./gradlew --no-daemon build
