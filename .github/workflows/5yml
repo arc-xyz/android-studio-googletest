@@ -34,7 +34,7 @@ jobs:
 
     
       - name: Set up local properties
-        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/local.properties"
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > ./local.properties
         
       - name: Build SampleApplication
         run: ./gradlew --no-daemon build
