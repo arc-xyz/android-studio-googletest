@@ -34,7 +34,7 @@ jobs:
 
     
       - name: Set up local properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > ./local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > /home/runner/work/android-studio-googletest/android-studio-googletest/local.properties
         
       - name: Build SampleApplication
         run: ./gradlew --no-daemon build
