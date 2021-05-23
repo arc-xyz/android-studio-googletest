@@ -7,45 +7,21 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    runs-on: macos-latest
+ androidTest:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.gradle/wrapper
-          key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-
-      - name: Set up local properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > /home/runner/work/android-studio-googletest/android-studio-googletest/local.properties
-     
-      - name: Run Unit tests
-        run: ./gradlew jacocoTestReport
-
-      - name: Run Instrumentation tests
+      - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
+          FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
         with:
-          api-level: 27
-          profile: Nexus 6
-          #script: ./gradlew -Pandroid.testInstrumentationRunnerArguments.class=com.smlnskgmail.jaman.hashchecker.AndroidTestSuite connectedCheck --stacktrace
-          script: ./gradlew app:externalNativeBuildDebug --stacktrace
+          api-level: 29
+          arch: x86
+          disable-animations: true
+          script: ./gradlew connectedAndroidTest --stacktrace
