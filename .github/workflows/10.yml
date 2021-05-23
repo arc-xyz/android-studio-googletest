@@ -5,6 +5,10 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Build with Gradle
+        run: ./gradlew check --stacktrace
+        
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         env:
