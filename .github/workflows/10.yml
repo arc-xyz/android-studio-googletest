@@ -19,4 +19,5 @@ jobs:
           api-level: 29
           arch: x86
           disable-animations: true
-          script: ./gradlew check --stacktrace
+          script: ./gradlew connectedCheck --stacktrace
+          
