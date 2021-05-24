@@ -10,6 +10,17 @@ jobs:
       - name: Setup local.properties
         run: touch ./local.properties
 
+      - name: Start emullator
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
+          FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
+        with:
+          api-level: 29
+          arch: x86
+          disable-animations: true
+          script: emulator
+          
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         env:
