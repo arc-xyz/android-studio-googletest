@@ -20,7 +20,8 @@ jobs:
         env:
           FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
           FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-          NDK_ROOT: /usr/local/lib/android/sdk/ndk-bundle
+         # NDK_ROOT: /usr/local/lib/android/sdk/ndk-bundle
+          NDK_ROOT: /Users/runner/Library/Android/sdk/ndk-bundle
            #(Expected '/usr/local/lib/android/sdk/ndk/21.4.7075529')
 
         with:
