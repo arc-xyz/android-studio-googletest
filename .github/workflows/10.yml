@@ -29,7 +29,7 @@ jobs:
           arch: x86
           disable-animations: true
           
-          #script: cd ./app/src/test/cpp && ../../main/cpp/x86.sh
-          script: cd ./app/src/test/cpp && ./x86.sh
+          script: cd ./app/src/main/cpp && ./x86.sh
+          #script: cd ./app/src/test/cpp && ./x86.sh
           #script: ./gradlew connectedCheck --stacktrace
           
