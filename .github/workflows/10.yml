@@ -11,7 +11,7 @@ jobs:
         run: touch ./local.properties
       
       - name: Make files executable
-        run: chmod +x ./app/src/main/cpp/x86.sh && cd ./app/src/main/cpp
+        run: chmod +x ./app/src/main/cpp/x86.sh
         
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -23,6 +23,6 @@ jobs:
           arch: x86
           disable-animations: true
           
-          script: ./x86.sh
+          script: cd ./app/src/main/cpp && ./x86.sh
           #script: ./gradlew connectedCheck --stacktrace
           
