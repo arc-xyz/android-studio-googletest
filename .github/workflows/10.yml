@@ -1,5 +1,7 @@
 name: Test
-on: [push]
+on:
+  workflow_dispatch:
+
 jobs:
   androidTest:
     runs-on: macOS-latest
