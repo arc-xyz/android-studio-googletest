@@ -10,7 +10,7 @@
 # To disable tests add line "enable_cpp_tests=false" to the file "local.properties".
 #
 
-if (${ENABLE_CPP_TESTS} MATCHES "true")
+#if (${ENABLE_CPP_TESTS} MATCHES "true")
 
     # Build and link tests
 
@@ -50,4 +50,4 @@ if (${ENABLE_CPP_TESTS} MATCHES "true")
             # Note: Sometimes desired logic is working. Sometimes not.
             COMMAND ${ADB} shell \"export LD_LIBRARY_PATH=${TARGET_TEST_LIB_DIR}\; ${TARGET_TEST_LIB_DIR}/native-tests-lib\")
 
-endif () # ENABLE_CPP_TESTS
+#endif () # ENABLE_CPP_TESTS
