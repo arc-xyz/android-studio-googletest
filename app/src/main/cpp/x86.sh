@@ -8,9 +8,6 @@ fi
 
 MINSDKVERSION=16
 
-# Change the NDK_ROOT to the path where NDK is installed. 
-NDK_ROOT=/Users/zhaoyong/Downloads/android-ndk-r22b
-
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 
